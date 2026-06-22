@@ -5,9 +5,9 @@ const envioController = {
     res.render('index', { resultados: null, fechaInicio: '', fechaFin: '' });
   },
 
-  calcularCostos: (req, res) => {
+  calcularCostos: async (req, res) => {
     const { fechaInicio, fechaFin } = req.body;
-    const resultados = EnvioModel.calcularPorRepartidor(fechaInicio, fechaFin);
+    const resultados = await EnvioModel.calcularPorRepartidor(fechaInicio, fechaFin);
     res.render('index', { resultados, fechaInicio, fechaFin });
   }
 };
