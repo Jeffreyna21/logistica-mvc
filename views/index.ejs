@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Logística MVC</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📦 Costos de Envío por Repartidor</h1>
+
+    <form method="POST" action="/calcular">
+      <label>Fecha Inicio: <input type="date" name="fechaInicio" value="<%= fechaInicio %>" required></label>
+      <label>Fecha Fin: <input type="date" name="fechaFin" value="<%= fechaFin %>" required></label>
+      <button type="submit">Calcular</button>
+    </form>
+
+    <% if (resultados) { %>
+      <% if (resultados.length === 0) { %>
+        <p class="empty">No hay envíos en ese rango de fechas.</p>
+      <% } else { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Repartidor</th>
+              <th>Envíos</th>
+              <th>Total kg</th>
+              <th>Zona</th>
+              <th>Tarifa/kg</th>
+              <th>Costo Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% resultados.forEach(r => { %>
+              <tr>
+                <td><%= r.repartidor %></td>
+                <td><%= r.total_envios || 0 %></td>
+                <td><%= r.total_kg ? r.total_kg.toFixed(2) + ' kg' : '—' %></td>
+                <td><%= r.zona || '—' %></td>
+                <td><%= r.tarifa ? '$' + r.tarifa.toFixed(2) : '—' %></td>
+                <td><%= r.costo_total ? '$' + r.costo_total.toFixed(2) : 'No aplica' %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    <% } %>
+  </div>
+</body>
+</html>
