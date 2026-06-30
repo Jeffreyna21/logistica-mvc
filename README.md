@@ -24,4 +24,4 @@ https://expressjs.com
 [LINK DE TU VIDEO ACÁ]
 
 ## Proyecto deployado
-[LINK DE RENDER ACÁ]
+[\[LINK DE RENDER ACÁ\]](https://logistica-mvc.onrender.com)
